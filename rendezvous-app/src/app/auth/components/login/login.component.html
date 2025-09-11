@@ -1,0 +1,48 @@
+<!-- login.component.html -->
+<div class="login-container">
+  <h2>Connexion</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <!-- Champ Email -->
+    <div class="form-group">
+      <label for="email">Email :</label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        placeholder="Entrez votre email"
+      />
+      <div
+        *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+        class="error"
+      >
+        Email invalide
+      </div>
+    </div>
+
+    <!-- Champ Mot de passe -->
+    <div class="form-group">
+      <label for="password">Mot de passe :</label>
+      <input
+        id="password"
+        type="text"
+        formControlName="password"
+        placeholder="Entrez votre mot de passe"
+      />
+      <div
+        *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+        class="error"
+      >
+        Le mot de passe est requis
+      </div>
+    </div>
+
+    <!-- Message d’erreur global -->
+    <div *ngIf="isLoginFailed" class="error">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Bouton de connexion -->
+    <button type="submit" [disabled]="loginForm.invalid">Se connecter</button>
+  </form>
+</div>

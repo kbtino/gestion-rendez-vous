@@ -1,0 +1,32 @@
+<div class="rendezvous-container">
+  <h2>Créer un rendez-vous</h2>
+
+  <form [formGroup]="rendezvousForm" (ngSubmit)="onSubmit()">
+    <!-- Champ titre -->
+    <div class="form-group">
+      <label for="titre">Titre :</label>
+      <input id="titre" type="text" formControlName="titre" placeholder="Titre du rendez-vous" />
+      <div *ngIf="rendezvousForm.get('titre')?.invalid && rendezvousForm.get('titre')?.touched" class="error">
+        Le titre est requis
+      </div>
+    </div>
+
+    <!-- Champ description -->
+    <div class="form-group">
+      <label for="description">Description :</label>
+      <textarea id="description" formControlName="description" placeholder="Détails..."></textarea>
+    </div>
+
+    <!-- Champ date et heure -->
+    <div class="form-group">
+      <label for="date_heure">Date et heure :</label>
+      <input id="date_heure" type="datetime-local" formControlName="date_heure" />
+      <div *ngIf="rendezvousForm.get('date_heure')?.invalid && rendezvousForm.get('date_heure')?.touched" class="error">
+        La date est obligatoire
+      </div>
+    </div>
+
+    <!-- Bouton -->
+    <button type="submit" [disabled]="rendezvousForm.invalid">Créer</button>
+  </form>
+</div>
