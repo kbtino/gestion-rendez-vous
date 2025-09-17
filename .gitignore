@@ -1,0 +1,10 @@
+# Fichiers Python compilés
+*.pyc
+__pycache__/
+
+# Node.js
+node_modules/
+
+# Environnement virtuel
+venv/
+.env
