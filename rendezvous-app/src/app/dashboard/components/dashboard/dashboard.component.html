@@ -1,37 +1,19 @@
-<div class="dashboard-container">
-  <h1>Tableau de bord</h1>
+<!-- dashboard.component.html -->
+<div class="dashboard-layout">
+  <!-- Header -->
+  <app-header></app-header>
 
-  <!-- Actions -->
-  <div class="actions">
-    <button class="btn btn-login" (click)="goToLogin()">
-      Aller à la page de connexion
-    </button>
+  <!-- Corps principal -->
+  <div class="dashboard-body">
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
 
-    <button class="btn btn-primary" (click)="goToCreateRdv()">
-      Créer un rendez-vous
-    </button>
-    <!-- Bouton de création d'utilisateur -->
-    <button class="btn btn-primary" *ngIf="currentUser?.role === 'admin'" (click)="goToCreateUser()">
-      Créer un utilisateur
-    </button>
+    <!-- Contenu dynamique -->
+    <main class="dashboard-content">
+      <router-outlet></router-outlet> <!-- Ici s'afficheront les composants enfants -->
+    </main>
   </div>
 
-  <!-- Affichage des rendez-vous -->
- <div class="dashboard">
-  <h2>Mes rendez-vous</h2>
-  <div *ngIf="rendezvousList.length === 0">
-    Aucun rendez-vous trouvé.
-  </div>
-
-  <ul>
-    <li *ngFor="let rdv of rendezvousList">
-      <strong>{{ rdv.titre }}</strong>  
-      ({{ rdv.date_heure | date:'short' }})  
-      - {{ rdv.nom_client }} / {{ rdv.contact_client }}
-      <span class="statut">[{{ rdv.statut }}]</span>
-    </li>
-  </ul>
+  <!-- Footer -->
+  <app-footer></app-footer>
 </div>
-</div>
-
-

@@ -14,12 +14,14 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-create-rendezvous',
   standalone: true,
-  imports: [CommonModule, 
+  imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule, 
+    MatButtonModule,
   ],
 
   templateUrl: './create-rendezvous.component.html',
@@ -38,7 +40,7 @@ export class CreateRendezvousComponent implements OnInit {
     this.rendezvousForm = this.fb.group({
       titre: ['', Validators.required],
       description: [''],
-      date_heure: ['', Validators.required],
+      date_heure: [null, Validators.required],
       nom_client: ['', Validators.required], //   ajout du champ nom_client
       contact_client: ['', [Validators.required, Validators.pattern(/^\+?[0-9]{7,15}$/)]] // 👉 ajout du champ contact_client
     });
@@ -57,7 +59,7 @@ export class CreateRendezvousComponent implements OnInit {
       next: res => {
         console.log('Rendez-vous créé:', res);
         alert('Rendez-vous créé avec succès !');
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/dashboard/home']);
       },
       error: err => {
         console.error('Erreur création rendez-vous:', err);

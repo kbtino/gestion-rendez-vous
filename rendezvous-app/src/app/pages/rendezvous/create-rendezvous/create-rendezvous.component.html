@@ -1,52 +1,53 @@
-<div class="rendezvous-container">
-  <h2>Créer un rendez-vous</h2>
 
-  <form [formGroup]="rendezvousForm" (ngSubmit)="onSubmit()">
-    <!-- Champ titre -->
-    <div class="form-group">
-      <label for="titre">Titre :</label>
-      <input id="titre" type="text" formControlName="titre" placeholder="Titre du rendez-vous" />
-      <div *ngIf="rendezvousForm.get('titre')?.invalid && rendezvousForm.get('titre')?.touched" class="error">
-        Le titre est requis
+      <div class="rendezvous-container">
+      <h2>Créer un rendez-vous</h2>
+
+      <form [formGroup]="rendezvousForm" (ngSubmit)="onSubmit()">
+        <!-- Champ titre -->
+        <div class="form-group">
+          <label for="titre">Titre :</label>
+          <input id="titre" type="text" formControlName="titre" placeholder="Titre du rendez-vous" />
+          <div *ngIf="rendezvousForm.get('titre')?.invalid && rendezvousForm.get('titre')?.touched" class="error">
+            Le titre est requis
+          </div>
+        </div>
+
+        <!-- Champ description -->
+        <div class="form-group">
+          <label for="description">Description :</label>
+          <textarea id="description" formControlName="description" placeholder="Détails..."></textarea>
+        </div>
+
+        <!-- Champ date et heure -->
+      <div class="form-group">
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Date du rendez-vous</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date_heure" placeholder="Choisir une date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <div *ngIf="rendezvousForm.get('date_heure')?.invalid && rendezvousForm.get('date_heure')?.touched" class="error">
+        La date est obligatoire
       </div>
     </div>
-
-    <!-- Champ description -->
-    <div class="form-group">
-      <label for="description">Description :</label>
-      <textarea id="description" formControlName="description" placeholder="Détails..."></textarea>
-    </div>
-
-    <!-- Champ date et heure -->
-  <div class="form-group">
-  <mat-form-field appearance="fill" style="width: 100%;">
-    <mat-label>Date du rendez-vous</mat-label>
-    <input matInput [matDatepicker]="picker" formControlName="date_heure" placeholder="Choisir une date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-
-  <div *ngIf="rendezvousForm.get('date_heure')?.invalid && rendezvousForm.get('date_heure')?.touched" class="error">
-    La date est obligatoire
-  </div>
-</div>
-    <!-- Champ de nom du client -->
-    <div class="form-group">
-      <label for="nom_client">Nom du client : </label>
-      <input type="text" id="nom_client" formControlName="nom_client" placeholder="Nom du client" />
-      <div *ngIf="rendezvousForm.get('nom_client')?.invalid && rendezvousForm.get('nom_client')?.touched" class="error">
-        Le nom du client est requis
+        <!-- Champ de nom du client -->
+        <div class="form-group">
+          <label for="nom_client">Nom du client : </label>
+          <input type="text" id="nom_client" formControlName="nom_client" placeholder="Nom du client" />
+          <div *ngIf="rendezvousForm.get('nom_client')?.invalid && rendezvousForm.get('nom_client')?.touched" class="error">
+            Le nom du client est requis
+          </div>
+        </div>
+        <!-- Champ de contact du client -->
+        <div class="form-group">
+          <label for="contact_client">Contact du client : </label>
+          <input type="text" id="contact_client" formControlName="contact_client" placeholder="Numéro de téléphone" />
+          <div *ngIf="rendezvousForm.get('contact_client')?.invalid && rendezvousForm.get('contact_client')?.touched" class="error">
+            Contact invalide (ex: +228 90123456)
+          </div>
+        </div>
+        <!-- Bouton -->
+        <button type="submit" [disabled]="rendezvousForm.invalid">Créer</button>
+      </form>
       </div>
-    </div>
-    <!-- Champ de contact du client -->
-    <div class="form-group">
-      <label for="contact_client">Contact du client : </label>
-      <input type="text" id="contact_client" formControlName="contact_client" placeholder="Numéro de téléphone" />
-      <div *ngIf="rendezvousForm.get('contact_client')?.invalid && rendezvousForm.get('contact_client')?.touched" class="error">
-        Contact invalide (ex: +228 90123456)
-      </div>
-    </div>
-    <!-- Bouton -->
-    <button type="submit" [disabled]="rendezvousForm.invalid">Créer</button>
-  </form>
-</div>
